@@ -16,3 +16,4 @@ ENV GOROOT=/usr/local/go
 ENV PATH=$PATH:/usr/local/go/bin
 
 RUN chmod +x /root/setup.sh
+RUN /root/setup.sh
