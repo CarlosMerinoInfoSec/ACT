@@ -41,7 +41,7 @@ then
 fi
 
 echo "[*] INSTALLING DEPENDENCIES IN \"$toolsDir\"..."
-echo "[!] NOTE: INSTALLATION HAS BEEN TESTED ON UBUNTU ONLY. RESULTS MAY VARY FOR OTHER DISTRIBUTIONS."
+echo "[!] NOTE: INSTALLATION HAS ONLY BEEN TESTED ON UBUNTU."
 
 baseDir=$PWD
 username="$(logname 2>/dev/null || echo root)"
@@ -58,6 +58,7 @@ if [ $? -ne 0 ]; then
 	wget --quiet https://golang.org/dl/go1.15.6.linux-amd64.tar.gz
 	tar -C /usr/local -xvf go1.15.6.linux-amd64.tar.gz > /dev/null
 	rm -rf go1.15.6.linux-amd64.tar.gz
+	rm -rf go
 	export GOROOT="/usr/local/go"
 	export PATH=$PATH:/usr/local/go/bin
 else
