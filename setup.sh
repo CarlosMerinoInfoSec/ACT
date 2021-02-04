@@ -71,9 +71,40 @@ go get -u github.com/jaeles-project/gospider &>/dev/null
 go get -u github.com/haccer/subjack &>/dev/null
 go get github.com/OJ/gobuster &>/dev/null
 
+# Ruby
+ruby -v &> /dev/null
+if [ $? -ne 0 ]; then
+        echo "[*] Installing Ruby and gems..."
+        apt-get install ruby-full
+        gem install bundler
+else
+        echo "[*] Ruby and gems already installed."
+fi
+
 # Python pip install
 echo "[*] Installing Python packages"
+pip install -r /root/requirements.txt
 pip install wfuzz
+
+# WhatWeb package commenting out due to python running ruby issue
+#echo "[*] Installing WhatWeb..."
+#wget --quiet https://github.com/urbanadventurer/WhatWeb/archive/v0.5.5.tar.gz
+#tar -xvf v0.5.5.tar.gz > /dev/null
+#rm -rf v0.5.5.tar.gz
+#cd WhatWeb-0.5.5
+#make install
+#mv whatweb /usr/local/bin/
+#cd ..
+
+#wafw00f
+echo "[*] Installing wafw00f..."
+git clone https://github.com/EnableSecurity/wafw00f.git
+cd wafw00f/
+python setup.py install
+cd ..
+
+#CMSeek
+git clone https://github.com/Tuhinshubhra/CMSeeK
 
 # HTTPX
 echo "[*] Installing HTTPX..."
