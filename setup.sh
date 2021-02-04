@@ -122,6 +122,7 @@ cp $toolsDir/amass/amass /usr/bin/amass
 
 # Back to /root
 cd "$baseDir" || { echo "Something went wrong"; exit 1; }
+rm -rf go
 
 echo "[*] SETUP FINISHED."
 exit 0
