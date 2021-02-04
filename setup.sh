@@ -50,6 +50,8 @@ homeDir=$(eval echo "~$username")
 mkdir -p "$toolsDir"
 cd "$toolsDir" || { echo "Something went wrong"; exit 1; }
 
+# Apt-get stuff
+apt-get install figlet
 
 # Golang
 go version &> /dev/null
