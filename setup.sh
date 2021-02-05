@@ -105,9 +105,6 @@ cd wafw00f/
 python3 setup.py install
 cd ..
 
-#CMSeek
-git clone https://github.com/Tuhinshubhra/CMSeeK
-
 # HTTPX
 echo "[*] Installing HTTPX..."
 wget https://github.com/projectdiscovery/httpx/releases/download/v1.0.3/httpx_1.0.3_linux_amd64.tar.gz -q
@@ -133,6 +130,13 @@ git clone https://github.com/m4ll0k/Infoga.git
 git clone https://github.com/GerbenJavado/LinkFinder.git
 git clone https://github.com/s0md3v/Striker.git
 git clone https://github.com/Tuhinshubhra/CMSeeK.git
+
+#theHarvester
+git clone https://github.com/laramies/theHarvester
+cd theHarvester
+python3 -m pip install -r requirements/base.txt
+sed -i 's+/usr/local/etc/theHarvester/proxies.yaml+/root/theHarvester/proxies.yaml+g' /root/theHarvester/theHarvester/lib/core.py
+cd ..
 
 echo "[*] SETUP FINISHED."
 exit 0

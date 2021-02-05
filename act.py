@@ -20,13 +20,13 @@ if sys.version_info[0] < 3:
 #examples for reference
 example = "\nEXAMPLES: \n"
 example += "----------------------------------------------------------------------------------------------------------------------------> \n" 
-example += "act.py -s linkedin.com -d                    # Perform DNS lookup and find SPF records if any, on the target \n"
-example += "act.py -s facebook.com -bg                   # Banner grabbing, WAF detection, crawl for subdomains on the target \n"
-example += "act.py -s ncdc.gov.in -e                     # Use Google dorking and OSINT to gather publicly emails related to the domain \n"
-example += "act.py -s facebook.com -bg -cs               # Run a scan for banner grabbing and a CMS scan \n"
-example += "act.py -s linkedin.com -xs                   # Run an XSS vulnerability scan on the target \n"
-example += "act.py -s barc.gov.in -b                     # Run a directory bruteforcing attack on the target \n"
-example += "act.py -s linkedin.com -pscan                # Run a fast port scanner on the target \n"
+example += "act.py -s hackerone.com -d        # Perform DNS lookup and find SPF records if any, on the target \n"
+example += "act.py -s hackerone.com -bg        # Banner grabbing, WAF detection, crawl for subdomains on the target \n"
+example += "act.py -s hackerone.com -e        # Use Google dorking and OSINT to gather publicly emails related to the domain \n"
+example += "act.py -s hackerone.com -bg        # Run a scan for banner grabbing and a CMS scan \n"
+example += "act.py -s hackerone.com -xs        # Run an XSS vulnerability scan on the target \n"
+example += "act.py -s hackerone.com -b        # Run a directory bruteforcing attack on the target \n"
+example += "act.py -s hackerone.com -pscan        # Run a fast port scanner on the target \n"
 example += "You can even add https:// or http:// to the target site \n"
 example += "----------------------------------------------------------------------------------------------------------------------------> \n"
 
@@ -44,13 +44,13 @@ group1.add_argument('-d', help='Perform DNS lookup and find SPF records if avail
 #banner grabbing on target (optional flag)
 group1.add_argument('-bg', help='Perform banner grabbing, WAF detection, and find subdomains if any on the target', action='store_true')
 #scan for cms on target (optional flag)
-group1.add_argument('-cs', help='Run a CMS scan on the website', action='store_true')
+#group1.add_argument('-cs', help='Run a CMS scan on the website', action='store_true')
 #google dork for emails (optional flag)
 group1.add_argument('-e', help='Use google dorking to gather any publicly available email ids related to the domain', action='store_true')
 #full dns agressive scan for all dns records
 group1.add_argument('-fd', help='A full DNS scan for all DNS records available on the target', action='store_true')
 #check for load balancers
-group1.add_argument('-lb', help='Check if the target site has load balancers', action='store_true')
+#group1.add_argument('-lb', help='Check if the target site has load balancers', action='store_true')
 
 #mutually exclusive group title
 group2 = parser.add_argument_group('Active/Aggressive Reconnaissance Options')
@@ -67,6 +67,10 @@ group2.add_argument('-pscan',help='Run a fast port scanner on the target', actio
 #ssl vulnerability analyser
 group2.add_argument('-ssl',help='Run a scanner to find SSL related vulnerabilities',action='store_true')
 
+if len(sys.argv)==1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
+
 args = parser.parse_args()
 site = ''
 site = args.s
@@ -81,7 +85,7 @@ ip=socket.gethostbyname(site)
 if (args.d == False and args.bg == False and args.cs == False and args.e == False and args.fd == False and args.lb == False and args.b == False and args.vscan == False and args.xs == False and args.lf == False and args.pscan == False and args.ssl == False):
 	print(colored('%sJust the name of the site is not enough, you will have to provide other options for recon!', 'red') % (attr('bold')))
 	print('Try these:')
-	print(parser.epilog)
+	parser.print_help(sys.stderr)
 else:
 	#print the arguments that you provided during run time
 	print('%s%sYour target site name: {} \n'.format(site) % (fg('blue'),attr('bold')))
@@ -123,23 +127,24 @@ if (args.bg == True):
 	print()
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
-if (args.cs == True): 
-	print(colored('%s - PERFORM A CMS SCAN ON THE TARGET','green') % (attr('bold')))
-	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
+#if (args.cs == True): 
+	#print(colored('%s - PERFORM A CMS SCAN ON THE TARGET','green') % (attr('bold')))
+	#print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 	#run a cms scan on the website
-	ret=os.system('python3 /root/CMSeek/cmseek.py -u {}'.format(site))
-	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
+	#running into issues with this one python can't see into this folder for some reason
+	#ret=os.system('python3 /root/CMSeek/cmseek.py -u {}'.format(site))
+	#print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 if (args.e == True): 
 	print(colored('%s - PERFORM EMAIL GATHERING USING GOOGLE DORKING AND OSINT','green') % (attr('bold')))
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 	#use google dorking to find any email ids that are publicly available
-	ret=os.system('theharvester -d {} -l 50 -b google | grep found -A20'.format(site))
+	ret=os.system('python3 /root/theHarvester/theHarvester.py -d {} -l 50 -b google | grep found -A20'.format(site))
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 	print()
-	ret=os.system('python3 /root/infoga/infoga.py -d {} -s all'.format(site))
+	ret=os.system('python3 /root/Infoga/infoga.py -d {} -s all'.format(site))
 	print()
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 	
@@ -152,13 +157,13 @@ if (args.fd == True):
 	print()
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
-if (args.lb == True):
-	print(colored('%s - CHECK FOR LOAD BALANCERS ON THE TARGET SITE','green') % (attr('bold')))
-	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
+#if (args.lb == True):
+	#print(colored('%s - CHECK FOR LOAD BALANCERS ON THE TARGET SITE','green') % (attr('bold')))
+	#print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 	#check for load balancers (software or hardware) on the target
-	ret=os.system('lbd {} | grep Checking -A10'. format(site))
-	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
+	#ret=os.system('lbd {} | grep Checking -A10'. format(site))
+	#print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 #active recon options
 
