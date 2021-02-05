@@ -102,7 +102,7 @@ pip install wfuzz
 echo "[*] Installing wafw00f..."
 git clone https://github.com/EnableSecurity/wafw00f.git
 cd wafw00f/
-python setup.py install
+python3 setup.py install
 cd ..
 
 #CMSeek

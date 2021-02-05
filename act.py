@@ -79,7 +79,7 @@ ip=socket.gethostbyname(site)
 #separate if statements for active and passive scanning options
 
 if (args.d == False and args.bg == False and args.cs == False and args.e == False and args.fd == False and args.lb == False and args.b == False and args.vscan == False and args.xs == False and args.lf == False and args.pscan == False and args.ssl == False):
-	print(colored('%sJust the name of the site is not enough, you will have to provide other options for reconnaissance!', 'red') % (attr('bold')))
+	print(colored('%sJust the name of the site is not enough, you will have to provide other options for recon!', 'red') % (attr('bold')))
 	print('Try these:')
 	print(parser.epilog)
 else:
