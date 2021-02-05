@@ -126,5 +126,12 @@ cp $toolsDir/amass/amass /usr/bin/amass
 cd "$baseDir" || { echo "Something went wrong"; exit 1; }
 rm -rf go
 
+# Repos test
+git clone https://github.com/aboul3la/Sublist3r.git
+git clone https://github.com/faizann24/XssPy.git
+git clone https://github.com/m4ll0k/Infoga.git
+git clone https://github.com/GerbenJavado/LinkFinder.git
+git clone https://github.com/s0md3v/Striker.git
+
 echo "[*] SETUP FINISHED."
 exit 0
