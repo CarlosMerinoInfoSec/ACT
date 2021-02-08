@@ -18,36 +18,36 @@ Docker Hub Link: https://hub.docker.com/r/carlosmerinoinfosec/anotherconsolidate
 
 You can pull the Docker image from Docker Hub as below.
 
-'''
+```
 docker pull carlosmerinoinfosec/anotherconsolidatedtool
-'''
+```
 
 You can also build the image from source
 
-'''
+```
 git clone https://github.com/CarlosMerinoInfoSec/AnotherConsolidatedTool.git
 cd AnotherConsolidatedTool
 docker build .
-'''
+```
 
-### Manua
+### Manual
 
 If you prefer running the script manually, you can do so.
 
 > ℹ Note: The script has been built on -and tested for- Ubuntu 20.04 but it should work on most Debian-based installs (such as Kali Linux).
 
-'''
+```
 git clone https://github.com/CarlosMerinoInfoSec/AnotherConsolidatedTool.git
 cd AnotherConsolidatedTool
 chmod +x setup.sh
 ./setup.sh
 python3 act.py --help
 python3 act.py -s target.com -do
-'''
+```
 
 Use '-h' or '--help' for the help menu
 
-'''
+```
 root@dockerhost:~# python3 act.py
     ___   ____________
    /   | / ____/_  __/
@@ -90,7 +90,7 @@ act.py -s hackerone.com -b        # Run a directory bruteforcing attack on the t
 act.py -s hackerone.com -pscan        # Run a fast port scanner on the target
 You can even add https:// or http:// to the target site
 ------------------------------------------------------------------------------------------------------------------
-'''
+```
 
 ### Tools
 Have to update this with what's actually being used
