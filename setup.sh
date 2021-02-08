@@ -121,15 +121,23 @@ cp $toolsDir/amass/amass /usr/bin/amass
 
 # Back to /root
 cd "$baseDir" || { echo "Something went wrong"; exit 1; }
-rm -rf go
+
+# Move Go downloads to /opt/go
+mv go/ /opt/go
 
 # Repos test
 git clone https://github.com/aboul3la/Sublist3r.git
+mv Sublist3r/ /opt/Sublist3r
 git clone https://github.com/faizann24/XssPy.git
+mv Xsspy/ /opt/XssPy
 git clone https://github.com/m4ll0k/Infoga.git
+mv Infoga/ /opt/Infoga
 git clone https://github.com/GerbenJavado/LinkFinder.git
+mv LinkFinder/ /opt/LinkFinder
 git clone https://github.com/s0md3v/Striker.git
+mv Striker/ /opt/Striker
 git clone https://github.com/Tuhinshubhra/CMSeeK.git
+mv CMSeeK/ /opt/CMSeek
 
 #theHarvester
 git clone https://github.com/laramies/theHarvester
@@ -137,6 +145,10 @@ cd theHarvester
 python3 -m pip install -r requirements/base.txt
 sed -i 's+/usr/local/etc/theHarvester/proxies.yaml+/root/theHarvester/proxies.yaml+g' /root/theHarvester/theHarvester/lib/core.py
 cd ..
+
+# Create wordlist directory and pull down wordlist
+mkdir /usr/share/wordlists
+wget -O /usr/share/wordlists/directory-list-2.3-medium.txt https://raw.githubusercontent.com/CarlosMerinoInfoSec/Wordlists/master/directory-list-2.3-medium.txt
 
 echo "[*] SETUP FINISHED."
 exit 0

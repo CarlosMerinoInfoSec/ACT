@@ -82,7 +82,7 @@ ip=socket.gethostbyname(site)
 #print the arguments that you provided during run time
 #separate if statements for active and passive scanning options
 
-if (args.d == False and args.bg == False and args.cs == False and args.e == False and args.fd == False and args.lb == False and args.b == False and args.vscan == False and args.xs == False and args.lf == False and args.pscan == False and args.ssl == False):
+if (args.d == False and args.bg == False and args.e == False and args.fd == False and args.b == False and args.vscan == False and args.xs == False and args.lf == False and args.pscan == False and args.ssl == False):
 	print(colored('%sJust the name of the site is not enough, you will have to provide other options for recon!', 'red') % (attr('bold')))
 	print('Try these:')
 	parser.print_help(sys.stderr)
@@ -123,7 +123,7 @@ if (args.bg == True):
 	#ret=os.system('dmitry -s {} | grep Host -A20'.format(site))	#print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 	#print()
 	
-	ret=os.system('python3 /root/Sublist3r/sublist3r.py -d {} | grep Enumerating -A100'.format(site))
+	ret=os.system('python3 /opt/Sublist3r/sublist3r.py -d {} | grep Enumerating -A100'.format(site))
 	print()
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
@@ -133,7 +133,7 @@ if (args.bg == True):
 
 	#run a cms scan on the website
 	#running into issues with this one python can't see into this folder for some reason
-	#ret=os.system('python3 /root/CMSeek/cmseek.py -u {}'.format(site))
+	#ret=os.system('python3 /opt/CMSeek/cmseek.py -u {}'.format(site))
 	#print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 if (args.e == True): 
@@ -141,10 +141,10 @@ if (args.e == True):
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 	#use google dorking to find any email ids that are publicly available
-	ret=os.system('python3 /root/theHarvester/theHarvester.py -d {} -l 50 -b google | grep found -A20'.format(site))
+	ret=os.system('python3 /opt/theHarvester/theHarvester.py -d {} -l 50 -b google | grep found -A20'.format(site))
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 	print()
-	ret=os.system('python3 /root/Infoga/infoga.py -d {} -s all'.format(site))
+	ret=os.system('python3 /opt/Infoga/infoga.py -d {} -s all'.format(site))
 	print()
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 	
@@ -172,7 +172,7 @@ if (args.b == True):
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 	#bruteforce the directory listing of the target
-	ret=os.system('gobuster dir -e -u {} -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 60'. format(site))
+	ret=os.system('/opt/go/bin/gobuster dir -e -u {} -w /usr/share/wordlists/directory-list-2.3-medium.txt -t 60'. format(site))
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 if (args.vscan == True):
