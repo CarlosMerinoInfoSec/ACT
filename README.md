@@ -14,18 +14,18 @@ You can run the script as a docker image I have not completed testing on a compl
 
 ### Docker
 
-Docker Hub Link: https://hub.docker.com/r/carlosmerinoinfosec/anotherconsolidatedtool.
+Docker Hub Link: https://hub.docker.com/r/carlosmerinoinfosec/act
 
 You can pull the Docker image from Docker Hub as below.
 
 ```
-docker pull carlosmerinoinfosec/anotherconsolidatedtool
+docker pull carlosmerinoinfosec/act
 ```
 
 You can also build the image from source
 
 ```
-git clone https://github.com/CarlosMerinoInfoSec/AnotherConsolidatedTool.git
+git clone https://github.com/CarlosMerinoInfoSec/ACT.git
 cd AnotherConsolidatedTool
 docker build .
 ```
@@ -37,7 +37,7 @@ If you prefer running the script manually, you can do so.
 > ℹ Note: The script has been built on -and tested for- Ubuntu 20.04 but it should work on most Debian-based installs (such as Kali Linux).
 
 ```
-git clone https://github.com/CarlosMerinoInfoSec/AnotherConsolidatedTool.git
+git clone https://github.com/CarlosMerinoInfoSec/ACT.git
 cd AnotherConsolidatedTool
 chmod +x setup.sh
 ./setup.sh
