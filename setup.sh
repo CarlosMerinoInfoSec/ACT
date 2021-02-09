@@ -129,7 +129,7 @@ mv go/ /opt/go
 git clone https://github.com/aboul3la/Sublist3r.git
 mv Sublist3r/ /opt/Sublist3r
 git clone https://github.com/faizann24/XssPy.git
-mv Xsspy/ /opt/XssPy
+mv XssPy/ /opt/XssPy
 git clone https://github.com/m4ll0k/Infoga.git
 mv Infoga/ /opt/Infoga
 git clone https://github.com/GerbenJavado/LinkFinder.git
@@ -145,6 +145,7 @@ cd theHarvester
 python3 -m pip install -r requirements/base.txt
 sed -i 's+/usr/local/etc/theHarvester/proxies.yaml+/root/theHarvester/proxies.yaml+g' /root/theHarvester/theHarvester/lib/core.py
 cd ..
+mv theHarvester/ /opt/
 
 # Create wordlist directory and pull down wordlist
 mkdir /usr/share/wordlists
