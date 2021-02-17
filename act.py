@@ -27,7 +27,6 @@ example += "act.py -s hackerone.com -bg        # Run a scan for banner grabbing 
 example += "act.py -s hackerone.com -xs        # Run an XSS vulnerability scan on the target \n"
 example += "act.py -s hackerone.com -b        # Run a directory bruteforcing attack on the target \n"
 example += "act.py -s hackerone.com -pscan        # Run a fast port scanner on the target \n"
-example += "You can even add https:// or http:// to the target site \n"
 example += "----------------------------------------------------------------------------------------------------------------------------> \n"
 
 #description about the CLI tool
@@ -180,7 +179,7 @@ if (args.vscan == True):
 	print(colored('%s--------------------------------------------------------------------------------------------------------------------------------------------------','yellow') % (attr('bold')))
 
 	#run a vulnerability scan on the target using striker
-	ret=os.system('python3 /root/Striker/striker.py {}'. format(site))
+	ret=os.system('python3 /opt/Striker/striker.py {}'. format(site))
 	
 	#run a golismero scan on the target
 	ret=os.system('golismero scan {}'.format(site))

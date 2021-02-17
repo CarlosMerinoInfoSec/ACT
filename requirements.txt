@@ -3,3 +3,4 @@ dnspython
 requests
 termcolor
 colored
+jsbeautifier
